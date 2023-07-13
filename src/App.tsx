@@ -1,3 +1,9 @@
-export const App = () => {
-    return <div className="App"></div>;
-};
+import { useStore } from 'Context/StoreContext';
+import { Landing } from 'Landing';
+import { observer } from 'mobx-react-lite';
+
+export const App = observer(() => {
+    const store = useStore();
+
+    return !store.wasStarted ? <Landing /> : <span>Started</span>;
+});
