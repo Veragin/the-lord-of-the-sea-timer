@@ -39,6 +39,8 @@ export class Engine {
 
     nextTurn = () => {
         const now = Date.now();
+
+        this.store.updatePrevPlayerActionCount();
         this.adjustTimeAndActionsOfOthers(now);
 
         if (this.store.state === 'runnning') {
@@ -79,4 +81,4 @@ export class Engine {
     };
 }
 
-const playerColors = ['red', 'green', 'yellow', 'blue', 'black'];
+const playerColors = ['#992808', '#00A619', '#DBA800', '#0CA6F5', '#2D3033'];

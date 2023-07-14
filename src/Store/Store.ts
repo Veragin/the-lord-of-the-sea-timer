@@ -13,6 +13,7 @@ export class Store {
             wasStarted: observable,
             state: observable,
             activePlayer: observable,
+            prevPlayerActionCount: observable,
             numberOfPlayers: observable,
             baseActions: observable,
             turnDurationS: observable,
@@ -22,6 +23,7 @@ export class Store {
             setWasStarted: action,
             setState: action,
             setActivePlayer: action,
+            updatePrevPlayerActionCount: action,
             setNumberOfPlayers: action,
             setBaseActions: action,
             setTurnDurationS: action,
@@ -51,6 +53,14 @@ export class Store {
     setActivePlayer(player: number) {
         this.activePlayer = player;
     }
+    getActivePlayerData = () => {
+        return this.engine.data[this.activePlayer];
+    };
+
+    prevPlayerActionCount = 2;
+    updatePrevPlayerActionCount = () => {
+        this.prevPlayerActionCount = this.getActivePlayerData().actions;
+    };
 
     // CONFIG
 

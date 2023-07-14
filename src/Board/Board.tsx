@@ -1,10 +1,11 @@
-import { Column } from 'Components/StyledComponents';
+import { Column, Row } from 'Components/StyledComponents';
 import { observer } from 'mobx-react-lite';
 import { StateBar } from './StateBar';
 import styled from 'styled-components';
 import { borderRadiusCss, spacingCss } from 'Components/globalCss';
 import { useStore } from 'Context/StoreContext';
 import { Counter } from './Counter';
+import { OverviewBar } from './OverviewBar';
 
 export const Board = observer(() => {
     const store = useStore();
@@ -15,7 +16,10 @@ export const Board = observer(() => {
             <StyledPlayerColor $color={store.engine.data[store.activePlayer]?.color ?? 'white'}>
                 Player on turn
             </StyledPlayerColor>
-            <Counter />
+            <StyledContent>
+                <Counter />
+                <OverviewBar />
+            </StyledContent>
         </StyledColumn>
     );
 });
@@ -36,4 +40,8 @@ const StyledPlayerColor = styled.div<{ $color: string }>`
     text-align: center;
     border-radius: ${borderRadiusCss(2)};
     color: white;
+`;
+const StyledContent = styled(Row)`
+    gap: ${spacingCss(2)};
+    align-items: stretch;
 `;
