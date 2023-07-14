@@ -60,7 +60,7 @@ const StyledFireValue = styled(Row)`
     height: 100%;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     font-size: 30px;
     cursor: pointer;
     background-color: #c3c4c0;
@@ -68,6 +68,7 @@ const StyledFireValue = styled(Row)`
 
     &:hover {
         background-color: black;
+        color: white;
     }
 `;
 
@@ -96,4 +97,6 @@ const ShotTable = styled.div`
     gap: ${spacingCss(2)};
     padding: ${spacingCss(2)};
     border-radius: ${borderRadiusCss(2)};
+    font-size: 30px;
+    cursor: pointer;
 `;

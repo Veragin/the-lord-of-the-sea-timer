@@ -3,6 +3,12 @@ import { Engine } from './Engine';
 
 type TState = 'paused' | 'runnning';
 
+export type TEvent = null | {
+    type: 'small' | 'large';
+    hexNumber: number; //0-7
+    hexIndex: number; //0-37
+};
+
 export class Store {
     engine: Engine;
 
@@ -14,6 +20,8 @@ export class Store {
             state: observable,
             activePlayer: observable,
             prevPlayerActionCount: observable,
+            smallEvent: observable,
+            largeEvent: observable,
             numberOfPlayers: observable,
             baseActions: observable,
             turnDurationS: observable,
@@ -24,6 +32,8 @@ export class Store {
             setState: action,
             setActivePlayer: action,
             updatePrevPlayerActionCount: action,
+            setSmallEvent: action,
+            setLargeEvent: action,
             setNumberOfPlayers: action,
             setBaseActions: action,
             setTurnDurationS: action,
@@ -61,6 +71,18 @@ export class Store {
     updatePrevPlayerActionCount = () => {
         this.prevPlayerActionCount = this.getActivePlayerData().actions;
     };
+
+    // EVENTS
+
+    smallEvent: TEvent = null;
+    setSmallEvent(e: TEvent) {
+        this.smallEvent = e;
+    }
+
+    largeEvent: TEvent = null;
+    setLargeEvent(e: TEvent) {
+        this.largeEvent = e;
+    }
 
     // CONFIG
 

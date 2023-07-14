@@ -7,6 +7,7 @@ import { useStore } from 'Context/StoreContext';
 import { Counter } from './Counter';
 import { OverviewBar } from './OverviewBar';
 import { Fire } from './Fire';
+import { EventDisplay } from './EventDisplay';
 
 export const Board = observer(() => {
     const store = useStore();
@@ -21,6 +22,7 @@ export const Board = observer(() => {
                 <Counter />
                 <Fire />
                 <OverviewBar />
+                <EventDisplay />
             </StyledContent>
         </StyledColumn>
     );
@@ -53,6 +55,7 @@ const StyledContent = styled(Row)`
     flex: 1;
     gap: ${spacingCss(2)};
     align-items: stretch;
+    position: relative;
 
     @media only screen and (max-width: 800px) {
         flex-direction: column;

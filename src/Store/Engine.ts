@@ -51,6 +51,7 @@ export class Engine {
         const nextPlayer =
             this.store.activePlayer + 1 >= this.data.length ? 0 : this.store.activePlayer + 1;
         this.store.setActivePlayer(nextPlayer);
+        this.generateEvent();
     };
 
     getPlayerTimeS = () => {
@@ -78,6 +79,32 @@ export class Engine {
             const bonuseActions = Math.floor(d.timeMs / (this.store.newActionAfterS * 1000));
             d.actions = this.store.baseActions + bonuseActions;
         });
+    };
+
+    private generateEvent = () => {
+        if (this.store.state === 'paused') return;
+
+        const isNewSmallEvent = Math.random() < this.store.smallEventProbability;
+        if (isNewSmallEvent) {
+            this.store.setSmallEvent({
+                hexNumber: Math.ceil(Math.random() * 7),
+                hexIndex: Math.ceil(Math.random() * 37),
+                type: 'small',
+            });
+        }
+
+        const isNewLargeEvent = Math.random() < this.store.largeEventProbability;
+        if (isNewLargeEvent) {
+            this.store.setLargeEvent({
+                hexNumber: Math.ceil(Math.random() * 7),
+                hexIndex: Math.ceil(Math.random() * 37),
+                type: 'large',
+            });
+        }
+
+        if (isNewLargeEvent || isNewSmallEvent) {
+            this.store.setState('paused');
+        }
     };
 }
 
