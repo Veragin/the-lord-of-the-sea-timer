@@ -42,7 +42,6 @@ const shot = () => Math.ceil(Math.random() * 4);
 const StyledCont = styled(Column)`
     gap: ${spacingCss(1)};
     flex: 1;
-    position: relative;
 `;
 
 const StyledGrid = styled.div`

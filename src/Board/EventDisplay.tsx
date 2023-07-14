@@ -50,4 +50,5 @@ const StyledCont = styled(Column)`
 
 const StyledTitle = styled.span`
     font-size: 50px;
+    text-align: center;
 `;

@@ -11,7 +11,7 @@ export const Landing = observer(() => {
 
     return (
         <StyledCont>
-            <StyledTitle>The Lord of the Sea - Timer</StyledTitle>
+            <StyledTitle>The Lord of the Sea Timer</StyledTitle>
             <StyledWindow>
                 <RsNumber
                     value={store.numberOfPlayers}
@@ -63,21 +63,22 @@ export const Landing = observer(() => {
 });
 
 const StyledCont = styled(Column)`
-    row-gap: ${spacingCss(10)};
+    row-gap: ${spacingCss(8)};
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+    text-align: center;
 `;
 
 const StyledTitle = styled.span`
     color: white;
-    font-size: 70px;
+    font-size: 50px;
 `;
 
 const StyledWindow = styled(Column)`
     background-color: rgba(50, 50, 50, 0.3);
     padding: ${spacingCss(3)};
-    min-width: 500px;
+    min-width: min(500px, 80%);
     max-width: 80%;
     max-height: 600px;
     row-gap: ${spacingCss(2)};
