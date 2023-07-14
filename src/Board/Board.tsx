@@ -7,7 +7,7 @@ import { useStore } from 'Context/StoreContext';
 import { Counter } from './Counter';
 import { OverviewBar } from './OverviewBar';
 import { Fire } from './Fire';
-import { EventDisplay } from './EventDisplay';
+import { EventDisplay } from './EventDisplay/EventDisplay';
 
 export const Board = observer(() => {
     const store = useStore();
