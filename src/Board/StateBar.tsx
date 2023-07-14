@@ -39,7 +39,6 @@ export const StateBar = observer(() => {
 
 const StyledRow = styled(Row)`
     justify-content: space-between;
-    width: 100%;
 `;
 
 const StyledTitle = styled.span<{ $isPaused: boolean }>`

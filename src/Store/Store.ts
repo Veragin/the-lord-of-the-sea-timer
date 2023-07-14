@@ -34,11 +34,17 @@ export class Store {
     wasStarted = false;
     setWasStarted(v: boolean) {
         this.wasStarted = v;
+        this.engine.init();
     }
 
     state: TState = 'paused';
     setState(state: TState) {
         this.state = state;
+        if (state === 'runnning') {
+            this.engine.play();
+        } else {
+            this.engine.pause();
+        }
     }
 
     activePlayer = 0;

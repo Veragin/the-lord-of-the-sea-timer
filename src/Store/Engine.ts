@@ -41,7 +41,9 @@ export class Engine {
         const now = Date.now();
         this.adjustTimeAndActionsOfOthers(now);
 
-        this.startedAtMs = now;
+        if (this.store.state === 'runnning') {
+            this.startedAtMs = now;
+        }
         this.playedBeforePauseMs = 0;
 
         const nextPlayer =
@@ -49,9 +51,18 @@ export class Engine {
         this.store.setActivePlayer(nextPlayer);
     };
 
-    private adjustTimeAndActionsOfOthers = (now: number) => {
+    getPlayerTimeS = () => {
+        const spendTimeMs = this.getPlayerSpendTimeMs(Date.now());
+        return Math.round(this.store.turnDurationS * 10 - spendTimeMs / 100) / 10;
+    };
+
+    private getPlayerSpendTimeMs = (now: number) => {
         const currentPlayedMs = this.startedAtMs === null ? 0 : now - this.startedAtMs;
-        const timeSpendMs = this.playedBeforePauseMs + currentPlayedMs;
+        return this.playedBeforePauseMs + currentPlayedMs;
+    };
+
+    private adjustTimeAndActionsOfOthers = (now: number) => {
+        const timeSpendMs = this.getPlayerSpendTimeMs(now);
         const timeOverLimitMs = Math.max(0, timeSpendMs - this.store.turnDurationS * 1000);
 
         this.data.forEach((d) => {
