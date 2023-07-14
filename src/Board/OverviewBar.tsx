@@ -25,7 +25,12 @@ export const OverviewBar = observer(() => {
 
 const StyledInfoBar = styled(Column)`
     align-items: center;
+    justify-content: center;
     gap: ${spacingCss(1)};
+
+    @media only screen and (max-width: 800px) {
+        flex-direction: row;
+    }
 `;
 
 const StyledPlayerInfo = styled(Row)<{ $color: string; $isActive: boolean }>`

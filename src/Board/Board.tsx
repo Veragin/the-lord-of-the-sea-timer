@@ -6,6 +6,7 @@ import { borderRadiusCss, spacingCss } from 'Components/globalCss';
 import { useStore } from 'Context/StoreContext';
 import { Counter } from './Counter';
 import { OverviewBar } from './OverviewBar';
+import { Fire } from './Fire';
 
 export const Board = observer(() => {
     const store = useStore();
@@ -18,6 +19,7 @@ export const Board = observer(() => {
             </StyledPlayerColor>
             <StyledContent>
                 <Counter />
+                <Fire />
                 <OverviewBar />
             </StyledContent>
         </StyledColumn>
@@ -31,6 +33,12 @@ const StyledColumn = styled(Column)`
     padding: ${spacingCss(4)};
     background-color: #20b2aa;
     align-items: stretch;
+
+    @media only screen and (max-width: 800px) {
+        width: calc(100% - ${spacingCss(2)});
+        padding: ${spacingCss(1)};
+        gap: ${spacingCss(1)};
+    }
 `;
 
 const StyledPlayerColor = styled.div<{ $color: string }>`
@@ -42,6 +50,11 @@ const StyledPlayerColor = styled.div<{ $color: string }>`
     color: white;
 `;
 const StyledContent = styled(Row)`
+    flex: 1;
     gap: ${spacingCss(2)};
     align-items: stretch;
+
+    @media only screen and (max-width: 800px) {
+        flex-direction: column;
+    }
 `;
