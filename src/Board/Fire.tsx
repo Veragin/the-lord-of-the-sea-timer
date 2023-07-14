@@ -1,11 +1,20 @@
 import { Column, Row } from 'Components/StyledComponents';
 import { spacingCss, borderRadiusCss } from 'Components/globalCss';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const Fire = () => {
-    const fire = (v: number) => {};
+    const [shots, setShots] = useState<number[]>([]);
+
+    const fire = (v: number) => {
+        const newShots = [];
+        for (let i = 0; i < v; i++) {
+            newShots.push(shot(), shot());
+        }
+        setShots(newShots);
+    };
 
     return (
         <StyledCont>
@@ -17,13 +26,23 @@ export const Fire = () => {
                     </StyledFireValue>
                 ))}
             </StyledGrid>
+            {shots.length > 0 && (
+                <ShotTable onClick={() => setShots([])}>
+                    {shots.map((v, i) => (
+                        <span key={i}>{v}</span>
+                    ))}
+                </ShotTable>
+            )}
         </StyledCont>
     );
 };
 
+const shot = () => Math.ceil(Math.random() * 4);
+
 const StyledCont = styled(Column)`
     gap: ${spacingCss(1)};
     flex: 1;
+    position: relative;
 `;
 
 const StyledGrid = styled.div`
@@ -57,4 +76,24 @@ const StyledTitle = styled.span`
     font-size: 30px;
     align-self: stretch;
     text-align: center;
+`;
+
+////////////////////////////////////////////////////
+
+const ShotTable = styled.div`
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    background-color: white;
+    color: black;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    gap: ${spacingCss(2)};
+    padding: ${spacingCss(2)};
+    border-radius: ${borderRadiusCss(2)};
 `;
