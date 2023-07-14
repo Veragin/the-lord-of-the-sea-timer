@@ -22,6 +22,13 @@ export const Landing = observer(() => {
                     step={1}
                 />
                 <RsNumber
+                    value={store.baseActions}
+                    onChange={(v) => store.setBaseActions(v)}
+                    title="Base actions"
+                    min={0}
+                    step={1}
+                />
+                <RsNumber
                     value={store.turnDurationS}
                     onChange={(v) => store.setTurnDurationS(v)}
                     title="Turn duration in s"
