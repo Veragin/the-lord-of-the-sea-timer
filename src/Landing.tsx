@@ -24,7 +24,7 @@ export const Landing = observer(() => {
                 <RsNumber
                     value={store.baseActions}
                     onChange={(v) => store.setBaseActions(v)}
-                    title="Base actions"
+                    title="Base actions cards"
                     min={0}
                     step={1}
                 />
@@ -38,7 +38,7 @@ export const Landing = observer(() => {
                 <RsNumber
                     value={store.newActionAfterS}
                     onChange={(v) => store.setNewActionAfterS(v)}
-                    title="New Action after in s"
+                    title="New Action card after in s"
                     min={0}
                     step={1}
                 />
@@ -46,13 +46,6 @@ export const Landing = observer(() => {
                     value={store.smallEventProbability}
                     onChange={(v) => store.setSmallEventProbability(v)}
                     title="Small event probability"
-                    min={0}
-                    max={1}
-                />
-                <RsNumber
-                    value={store.largeEventProbability}
-                    onChange={(v) => store.setLargeEventProbability(v)}
-                    title="Large event probability"
                     min={0}
                     max={1}
                 />

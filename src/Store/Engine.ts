@@ -81,31 +81,32 @@ export class Engine {
         });
     };
 
+    private possibleHexs = getFreshHexs();
     private generateEvent = () => {
         if (this.store.state === 'paused') return;
 
         const isNewSmallEvent = Math.random() < this.store.smallEventProbability;
         if (isNewSmallEvent) {
+            if (this.possibleHexs.length === 0) {
+                this.possibleHexs = getFreshHexs();
+            }
+
+            const hexIndex = Math.floor(Math.random() * this.possibleHexs.length);
             this.store.setSmallEvent({
-                hexNumber: Math.ceil(Math.random() * 7),
+                hexNumber: this.possibleHexs[hexIndex],
                 hexIndex: Math.ceil(Math.random() * 37),
                 type: 'small',
             });
+
+            this.possibleHexs.splice(hexIndex, 1);
         }
 
-        const isNewLargeEvent = Math.random() < this.store.largeEventProbability;
-        if (isNewLargeEvent) {
-            this.store.setLargeEvent({
-                hexNumber: Math.ceil(Math.random() * 7),
-                hexIndex: Math.ceil(Math.random() * 37),
-                type: 'large',
-            });
-        }
-
-        if (isNewLargeEvent || isNewSmallEvent) {
+        if (isNewSmallEvent) {
             this.store.setState('paused');
         }
     };
 }
+
+const getFreshHexs = () => [1, 2, 3, 4, 5, 6, 7];
 
 const playerColors = ['#992808', '#00A619', '#DBA800', '#0CA6F5', '#2D3033'];

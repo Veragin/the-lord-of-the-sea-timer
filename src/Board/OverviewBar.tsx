@@ -18,7 +18,6 @@ export const OverviewBar = observer(() => {
                     {info.actions}
                 </StyledPlayerInfo>
             ))}
-            <StyledPrevActionValue>{store.prevPlayerActionCount}</StyledPrevActionValue>
         </StyledInfoBar>
     );
 });
