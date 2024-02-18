@@ -45,7 +45,7 @@ export const Landing = observer(() => {
                 <RsNumber
                     value={store.smallEventProbability}
                     onChange={(v) => store.setSmallEventProbability(v)}
-                    title="Small event probability"
+                    title="Event probability"
                     min={0}
                     max={1}
                 />

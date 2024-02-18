@@ -43,12 +43,3 @@ const StyledPlayerInfo = styled(Row)<{ $color: string; $isActive: boolean }>`
     color: white;
     font-size: 30px;
 `;
-
-const StyledPrevActionValue = styled(Row)`
-    width: 80px;
-    height: 80px;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    font-size: 30px;
-`;

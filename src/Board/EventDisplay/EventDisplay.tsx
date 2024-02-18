@@ -10,7 +10,7 @@ import { renderTiles } from './draw';
 export const EventDisplay = observer(() => {
     const store = useStore();
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const event = store.smallEvent ?? store.largeEvent;
+    const event = store.smallEvent;
 
     useEffect(() => {
         if (canvasRef.current) {
@@ -20,29 +20,22 @@ export const EventDisplay = observer(() => {
 
             const ctx = canvasRef.current.getContext('2d');
             assertNotNullish(ctx);
-            ctx.translate(-15, 30);
+            ctx.translate(-15 - rect.width / 2, 30);
             ctx.scale(0.8, 0.8);
 
-            renderTiles(ctx, event?.hexIndex ?? 0);
+            renderTiles(ctx, event?.hexIndex ?? 0, event?.hexNumber ?? 0);
         }
     });
 
     if (event === null) return null;
 
-    const isLarge = event.type === 'large';
-
     const onClose = () => {
-        if (isLarge) {
-            store.setLargeEvent(null);
-            return;
-        }
-
         store.setSmallEvent(null);
     };
 
     return (
         <StyledCont onClick={onClose}>
-            <StyledTitle>{isLarge ? 'New LARGE event' : 'New SMALL event'}</StyledTitle>
+            <StyledTitle>New event</StyledTitle>
             <span>{`Event hex id: ${event.hexNumber}`}</span>
             <span>{`Event hex index: ${event.hexIndex}`}</span>
             <StyledCanvas ref={canvasRef} />

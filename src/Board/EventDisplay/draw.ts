@@ -1,4 +1,5 @@
 import { colorMain } from 'Components/globalCss';
+import { biomColor, hexs } from './Const';
 
 const hexagonAngle = 0.523598776; // 30 degrees in radians
 const sideLength = 36;
@@ -21,20 +22,31 @@ const hexagon = [
     [0, 0, 34, 35, 36, 37, 0],
 ];
 
-export const renderTiles = (ctx: CanvasRenderingContext2D, selected: number) => {
+export const renderTiles = (
+    ctx: CanvasRenderingContext2D,
+    selected: number,
+    selectedHex: number
+) => {
     ctx.strokeStyle = '#000';
-    ctx.fillStyle = colorMain;
+
     ctx.lineWidth = 2;
 
+    let hexIndex = 0;
     for (let i = 0; i < hexagon.length; i++) {
         for (let j = 0; j < hexagon[i].length; j++) {
             if (hexagon[i][j] === 0) continue;
 
             tilePath(ctx, i, j);
+
             if (hexagon[i][j] === selected) {
-                ctx.fill();
+                ctx.fillStyle = colorMain;
+            } else {
+                ctx.fillStyle = biomColor[hexs[selectedHex][hexIndex]];
             }
+
+            ctx.fill();
             ctx.stroke();
+            hexIndex++;
         }
     }
 };
