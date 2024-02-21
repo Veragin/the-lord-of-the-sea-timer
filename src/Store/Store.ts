@@ -19,23 +19,14 @@ export class Store {
             wasStarted: observable,
             state: observable,
             activePlayer: observable,
-            prevPlayerActionCount: observable,
             smallEvent: observable,
             numberOfPlayers: observable,
-            baseActions: observable,
-            turnDurationS: observable,
-            newActionAfterS: observable,
-            smallEventProbability: observable,
+
             setWasStarted: action,
             setState: action,
             setActivePlayer: action,
-            updatePrevPlayerActionCount: action,
             setSmallEvent: action,
             setNumberOfPlayers: action,
-            setBaseActions: action,
-            setTurnDurationS: action,
-            setNewActionAfterS: action,
-            setSmallEventProbability: action,
         });
     }
 
@@ -59,13 +50,12 @@ export class Store {
     setActivePlayer(player: number) {
         this.activePlayer = player;
     }
+    hasTimeToken = false;
+    setHasTimeToken(v: boolean) {
+        this.hasTimeToken = v;
+    }
     getActivePlayerData = () => {
         return this.engine.data[this.activePlayer];
-    };
-
-    prevPlayerActionCount = 2;
-    updatePrevPlayerActionCount = () => {
-        this.prevPlayerActionCount = this.getActivePlayerData().actions;
     };
 
     // EVENTS
@@ -75,30 +65,8 @@ export class Store {
         this.smallEvent = e;
     }
 
-    // CONFIG
-
     numberOfPlayers = 5;
     setNumberOfPlayers(v: number) {
         this.numberOfPlayers = v;
-    }
-
-    baseActions: number = 2;
-    setBaseActions(v: number) {
-        this.baseActions = v;
-    }
-
-    turnDurationS: number = 60;
-    setTurnDurationS(v: number) {
-        this.turnDurationS = v;
-    }
-
-    newActionAfterS: number = 30;
-    setNewActionAfterS(v: number) {
-        this.newActionAfterS = v;
-    }
-
-    smallEventProbability: number = 0.2;
-    setSmallEventProbability(v: number) {
-        this.smallEventProbability = v;
     }
 }

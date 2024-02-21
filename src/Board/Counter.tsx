@@ -13,7 +13,7 @@ export const Counter = () => {
     useEffect(() => {
         timeer.current = setInterval(() => {
             if (valRef.current && constRef.current) {
-                const time = store.engine.getPlayerTimeS();
+                const time = Math.floor(store.engine.getPlayerTimeMs(Date.now()) / 100) / 10;
                 const isAfterLimit = Math.sign(time) < 0;
                 let timeString = String(Math.abs(time));
                 timeString = timeString.includes('.') ? timeString : `${timeString}.0`;
@@ -31,7 +31,7 @@ export const Counter = () => {
         <StyledCont ref={constRef} onClick={() => store.engine.nextTurn()}>
             <StyledTime>Next turn</StyledTime>
             <StyledTime ref={valRef} />
-            <StyledTime>{store.getActivePlayerData().actions} actions</StyledTime>
+            <StyledTime>{store.hasTimeToken ? 'Time token' : ''}</StyledTime>
         </StyledCont>
     );
 };

@@ -18,36 +18,8 @@ export const Landing = observer(() => {
                     onChange={(v) => store.setNumberOfPlayers(v)}
                     title="Number of players"
                     min={2}
-                    max={5}
+                    max={7}
                     step={1}
-                />
-                <RsNumber
-                    value={store.baseActions}
-                    onChange={(v) => store.setBaseActions(v)}
-                    title="Base actions cards"
-                    min={0}
-                    step={1}
-                />
-                <RsNumber
-                    value={store.turnDurationS}
-                    onChange={(v) => store.setTurnDurationS(v)}
-                    title="Turn duration in s"
-                    min={0}
-                    step={1}
-                />
-                <RsNumber
-                    value={store.newActionAfterS}
-                    onChange={(v) => store.setNewActionAfterS(v)}
-                    title="New Action card after in s"
-                    min={0}
-                    step={1}
-                />
-                <RsNumber
-                    value={store.smallEventProbability}
-                    onChange={(v) => store.setSmallEventProbability(v)}
-                    title="Event probability"
-                    min={0}
-                    max={1}
                 />
                 <Button onClick={() => store.setWasStarted(true)}>Start</Button>
             </StyledWindow>

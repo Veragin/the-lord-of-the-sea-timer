@@ -6,7 +6,6 @@ import { borderRadiusCss, spacingCss } from 'Components/globalCss';
 import { useStore } from 'Context/StoreContext';
 import { Counter } from './Counter';
 import { OverviewBar } from './OverviewBar';
-import { Fire } from './Fire';
 import { EventDisplay } from './EventDisplay/EventDisplay';
 
 export const Board = observer(() => {
@@ -20,7 +19,6 @@ export const Board = observer(() => {
             </StyledPlayerColor>
             <StyledContent>
                 <Counter />
-                <Fire />
                 <OverviewBar />
                 <EventDisplay />
             </StyledContent>

@@ -3,6 +3,7 @@ import { borderRadiusCss, colorDefault, spacingCss } from 'Components/globalCss'
 import { useStore } from 'Context/StoreContext';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+import { convertSecToFormatedStringWithUnit } from 'utils';
 
 export const OverviewBar = observer(() => {
     const store = useStore();
@@ -15,7 +16,7 @@ export const OverviewBar = observer(() => {
                     $color={info.color}
                     $isActive={i === store.activePlayer}
                 >
-                    {info.actions}
+                    {convertSecToFormatedStringWithUnit(info.lastTurnMs)}
                 </StyledPlayerInfo>
             ))}
         </StyledInfoBar>
